@@ -1,0 +1,35 @@
+{
+    "title": "Stacja Meteo",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Stacja Meteo",
+                "description": "Wprowadź adres IP lub nazwę hosta stacji meteo.",
+                "data": {
+                    "host": "Adres IP lub host",
+                    "name": "Nazwa stacji"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Nie można połączyć się ze stacją"
+        },
+        "abort": {
+            "already_configured": "Stacja jest już skonfigurowana"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "ds18b20_temperature": { "name": "Temperatura DS18B20" },
+            "bme280_temperature": { "name": "Temperatura BME280" },
+            "bme280_humidity": { "name": "Wilgotność BME280" },
+            "bme280_pressure": { "name": "Ciśnienie BME280" },
+            "pms5003_pm1": { "name": "PM 1.0 PMS5003" },
+            "pms5003_pm25": { "name": "PM 2.5 PMS5003" },
+            "pms5003_pm10": { "name": "PM 10 PMS5003" },
+            "bme280_dewpoint": { "name": "Punkt rosy BME280" },
+            "ds18b20_dewpoint": { "name": "Punkt rosy DS18B20" },
+            "pms5003_aqi": { "name": "AQI PMS5003" }
+        }
+    }
+}
