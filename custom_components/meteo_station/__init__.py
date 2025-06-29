@@ -5,7 +5,7 @@ from .const import DOMAIN, PLATFORMS
 from .coordinator import MeteoDataUpdateCoordinator
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    coordinator = MeteoDataUpdateCoordinator(hass, entry.data["name"], entry.data["host"])
+    coordinator = MeteoDataUpdateCoordinator(hass, entry)
     await coordinator.async_config_entry_first_refresh()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator

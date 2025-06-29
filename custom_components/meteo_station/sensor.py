@@ -2,6 +2,7 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.components.sensor import SensorEntity, SensorDeviceClass, SensorEntityDescription
 from homeassistant.const import UnitOfTemperature, UnitOfPressure, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, PERCENTAGE
 from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import DOMAIN
 import math
 
@@ -90,8 +91,10 @@ async def async_setup_entry(hass, entry, async_add_entities):
     async_add_entities(entities)
 
 
-class MeteoSensor(SensorEntity):
+class MeteoSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator, description: SensorEntityDescription, sensor_name, reading_name):
+        super().__init__(coordinator)
+
         self._coordinator = coordinator
         self._sensor_name = sensor_name
         self._reading_name = reading_name
@@ -124,6 +127,16 @@ class MeteoSensor(SensorEntity):
 
     async def async_update(self):
         await self._coordinator.async_request_refresh()
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        return DeviceInfo(
+            identifiers={(DOMAIN, self._coordinator.url)},
+            name=self._coordinator.entry.data.get("name", self._coordinator.url),
+            manufacturer="bartekl1",
+            model="Meteo Station",
+            configuration_url=self._coordinator.url,
+        )
 
 
 class DewPointSensor(MeteoSensor):

@@ -3,10 +3,11 @@
         "step": {
             "user": {
                 "title": "Meteo Station",
-                "description": "Enter the IP address or hostname of your meteo station.",
+                "description": "Enter URL of your meteo station.",
                 "data": {
-                    "host": "Host (IP or hostname)",
-                    "name": "Name of the station"
+                    "url": "URL",
+                    "name": "Name of the station",
+                    "verify_ssl": "Verify SSL/TLS certificate"
                 }
             }
         },

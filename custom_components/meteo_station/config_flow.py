@@ -12,7 +12,8 @@ class MeteoStationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema({
-                vol.Required("host"): str,
-                vol.Required("name"): str
+                vol.Required("url"): str,
+                vol.Required("name"): str,
+                vol.Optional("verify_ssl", default=True): bool
             })
         )
