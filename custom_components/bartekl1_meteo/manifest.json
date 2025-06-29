@@ -1,5 +1,5 @@
 {
-    "domain": "meteo_station",
+    "domain": "bartekl1_meteo",
     "name": "Meteo Station",
     "version": "1.0.0",
     "integration_type": "device",
