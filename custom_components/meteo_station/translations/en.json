@@ -27,7 +27,7 @@
             "pms5003_pm25": { "name": "PM 2.5 PMS5003" },
             "pms5003_pm10": { "name": "PM 10 PMS5003" },
             "bme280_dewpoint": { "name": "Dew Point BME280" },
-            "ds18b20_dewpoint": { "name": "Dew Point DS18B20" },
+            "ds18b20_dewpoint": { "name": "Dew Point DS18B20 + BME280" },
             "pms5003_aqi": { "name": "AQI PMS5003" }
         }
     }
