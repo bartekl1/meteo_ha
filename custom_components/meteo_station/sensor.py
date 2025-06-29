@@ -1,8 +1,7 @@
-from homeassistant.helpers.entity import Entity
 from homeassistant.components.sensor import SensorEntity, SensorDeviceClass, SensorEntityDescription
-from homeassistant.const import UnitOfTemperature, UnitOfPressure, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, PERCENTAGE
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.const import UnitOfTemperature, UnitOfPressure, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, PERCENTAGE
 from .const import DOMAIN
 import math
 

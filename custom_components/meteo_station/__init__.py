@@ -1,8 +1,7 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.typing import ConfigType
-from .const import DOMAIN, PLATFORMS
 from .coordinator import MeteoDataUpdateCoordinator
+from .const import DOMAIN, PLATFORMS
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     coordinator = MeteoDataUpdateCoordinator(hass, entry)
