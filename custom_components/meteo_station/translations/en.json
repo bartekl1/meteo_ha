@@ -3,11 +3,12 @@
         "step": {
             "user": {
                 "title": "Meteo Station",
-                "description": "Enter URL of your meteo station.",
+                "description": "Enter station configuration details.",
                 "data": {
                     "url": "URL",
                     "name": "Name of the station",
-                    "verify_ssl": "Verify SSL/TLS certificate"
+                    "verify_ssl": "Verify SSL/TLS certificate",
+                    "update_interval": "Update interval (seconds)"
                 }
             }
         },

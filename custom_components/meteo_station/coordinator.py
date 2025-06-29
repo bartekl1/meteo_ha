@@ -15,12 +15,13 @@ class MeteoDataUpdateCoordinator(DataUpdateCoordinator):
         self.url = entry.data["url"]
         self.api_url = f"{self.url}/api/current_reading"
         self.verify_ssl = entry.data.get("verify_ssl", True)
+        self.update_interval_seconds = entry.data.get("update_interval", 60)
 
         super().__init__(
             hass,
             _LOGGER,
             name=f"Meteo Station ({self.url})",
-            update_interval=datetime.timedelta(seconds=60),
+            update_interval=datetime.timedelta(seconds=self.update_interval_seconds)
         )
 
     async def _async_update_data(self):
@@ -33,5 +34,5 @@ class MeteoDataUpdateCoordinator(DataUpdateCoordinator):
                 async with session.get(self.api_url, timeout=10) as resp:
                     return await resp.json()
         except Exception as e:
-            # _LOGGER.error("Error fetching data: %s", e)
+            _LOGGER.error("Error fetching data: %s", e)
             raise

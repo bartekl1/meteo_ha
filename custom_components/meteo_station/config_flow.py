@@ -14,6 +14,7 @@ class MeteoStationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema({
                 vol.Required("url"): str,
                 vol.Required("name"): str,
-                vol.Optional("verify_ssl", default=True): bool
+                vol.Optional("verify_ssl", default=True): bool,
+                vol.Optional("update_interval", default=60): int
             })
         )

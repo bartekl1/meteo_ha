@@ -4,11 +4,12 @@
         "step": {
             "user": {
                 "title": "Stacja Meteo",
-                "description": "Wprowadź adres URL stacji meteo.",
+                "description": "Wprowadź szczegóły konfiguracji stacji.",
                 "data": {
                     "url": "URL",
                     "name": "Nazwa stacji",
-                    "verify_ssl": "Weryfikuj certyfikat SSL/TLS"
+                    "verify_ssl": "Weryfikuj certyfikat SSL/TLS",
+                    "update_interval": "Częstotliwość aktualizacji (sekundy)"
                 }
             }
         },
