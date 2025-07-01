@@ -153,8 +153,10 @@ class DewPointSensor(MeteoSensor):
 
     @property
     def state(self):
-        t = self._coordinator.data[self._temperature_sensor]["temperature"]
-        rh = self._coordinator.data["bme280"]["humidity"]
+        t = self._coordinator.data.get(self._temperature_sensor, {}).get("temperature")
+        rh = self._coordinator.data.get("bme280", {}).get("humidity")
+        if t is None or rh is None:
+            return None
 
         e = 6.112 * math.exp((17.67 * t) / (t + 243.5))
         e_d = e * (rh / 100)
@@ -178,8 +180,10 @@ class AQISensor(MeteoSensor):
 
     @property
     def state(self):
-        pm10 = self._coordinator.data[self._pm_sensor]["pm10"]
-        pm25 = self._coordinator.data[self._pm_sensor]["pm2.5"]
+        pm10 = self._coordinator.data.get(self._pm_sensor, {}).get("pm10", 0)
+        pm25 = self._coordinator.data.get(self._pm_sensor, {}).get("pm2.5", 0)
+        if pm10 is None or pm25 is None:
+            return None
 
         aqi = ((pm10 / 1.8) + (pm25 / 1.1)) / 2
         return round(aqi, 2)

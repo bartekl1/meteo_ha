@@ -1,4 +1,4 @@
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.core import HomeAssistant
 import datetime
 import logging
@@ -25,13 +25,11 @@ class MeteoDataUpdateCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self):
         try:
-            connector = None
-            if not self.verify_ssl:
-                connector = aiohttp.TCPConnector(verify_ssl=False)
-
+            connector = aiohttp.TCPConnector(verify_ssl=self.verify_ssl)
             async with aiohttp.ClientSession(connector=connector) as session:
                 async with session.get(self.api_url, timeout=10) as resp:
+                    resp.raise_for_status()
                     return await resp.json()
         except Exception as e:
-            _LOGGER.error("Error fetching data: %s", e)
-            raise
+            _LOGGER.error("Error fetching data from %s: %s", self.api_url, e)
+            raise UpdateFailed(f"Error fetching data: {e}")
